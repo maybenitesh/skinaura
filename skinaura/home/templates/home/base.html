@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SkinAura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+    
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <img src="{% static 'home/logo1.png' %}" alt="SkinAura">
+                SkinAura
+            </a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'contact' %}">Contact</a>
+                <a href="{% url 'products' %}">Products</a>
+                <form method="GET" action="{% url 'products' %}" class="search-bar">
+                    <input type="text" name="q" placeholder="Search skincare...">
+                    <button type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                <a href="{% url 'cart' %}" class="cart-icon">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    
+                    {% if request.session.cart %}
+                    <span class="cart-count">
+                    {{ request.session.cart|length }}
+                    </span>
+                    {% endif %}
+                    
+                    </a>
+
+                {% if user.is_authenticated %}
+                <a href="/logout/" class="btn-nav">Logout</a>
+            {% else %}
+                <a href="/login/" class="btn-nav">Login</a>
+                <a href="/register/" class="btn-nav">Register</a>
+            {% endif %}
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer class="footer">
+
+        <div class="footer-container">
+        
+        <!-- Brand -->
+        <div class="footer-about">
+        <h3>SkinAura</h3>
+        <p>Your destination for glowing and healthy skin. Discover skincare that enhances your natural beauty.</p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="footer-links">
+        <h4>Quick Links</h4>
+        <a href="/">Home</a>
+        <a href="{% url 'products' %}">Products</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact</a>
+        </div>
+        
+        <!-- Contact -->
+        <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>Email: support@skinaura.com</p>
+        <p>Phone: +91 9876543210</p>
+        <p>Mumbai, India</p>
+        </div>
+        
+        <!-- Social -->
+        <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        </div>
+        
+        </div>
+        
+        <div class="footer-bottom">
+        <p>© 2026 SkinAura. All rights reserved.</p>
+        </div>
+        
+        </footer>
+
+    <script src="{% static 'home/script.js' %}"></script>
+</body>
+</html>

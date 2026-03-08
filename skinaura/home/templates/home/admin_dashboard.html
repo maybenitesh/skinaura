@@ -1,0 +1,68 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<section class="admin-section">
+
+    <div class="container">
+
+        <h2 class="admin-title">Admin Dashboard</h2>
+
+        <!-- ================= STATS CARDS ================= -->
+        <div class="admin-cards">
+
+            <div class="admin-card">
+                <h4>Total Orders</h4>
+                <p>{{ total_orders }}</p>
+            </div>
+
+            <div class="admin-card">
+                <h4>Pending</h4>
+                <p>{{ pending_orders }}</p>
+            </div>
+
+            <div class="admin-card">
+                <h4>Shipped</h4>
+                <p>{{ shipped_orders }}</p>
+            </div>
+
+            <div class="admin-card">
+                <h4>Delivered</h4>
+                <p>{{ delivered_orders }}</p>
+            </div>
+
+        </div>
+
+        <!-- ================= REVENUE ================= -->
+        <div class="admin-revenue">
+            <h3>Total Revenue</h3>
+            <h2>₹{{ total_revenue }}</h2>
+        </div>
+
+        <!-- ================= LOW STOCK ================= -->
+        <div class="admin-stock">
+
+            <h3>Low Stock Products (Less than 5)</h3>
+
+            {% if low_stock_products %}
+                <ul>
+                    {% for product in low_stock_products %}
+                        <li>
+                            {{ product.name }} — 
+                            <span class="stock-count">
+                                Stock: {{ product.stock }}
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-stock">No low stock products 🎉</p>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

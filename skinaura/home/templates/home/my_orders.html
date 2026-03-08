@@ -1,0 +1,19 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<h2>My Orders</h2>
+
+{% if orders %}
+    {% for order in orders %}
+        <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+            <p><strong>Order ID:</strong> {{ order.id }}</p>
+            <p><strong>Total:</strong> ₹{{ order.total_amount }}</p>
+            <p><strong>Status:</strong> {{ order.status }}</p>
+            <a href="{% url 'track_order' order.id %}">Track Order</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No orders yet.</p>
+{% endif %}
+
+{% endblock %}

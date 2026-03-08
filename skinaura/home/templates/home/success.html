@@ -1,0 +1,30 @@
+{% extends "home/base.html" %}
+{% block content %}
+
+<section class="success-section">
+    <div class="success-card">
+
+        <div class="success-icon">🎉</div>
+
+        <h2>Order Placed Successfully!</h2>
+
+        <div class="success-details">
+            <p><strong>Order ID:</strong> {{ order.id }}</p>
+            <p><strong>Name:</strong> {{ order.customer_name }}</p>
+            <p><strong>Total Amount:</strong> ₹{{ order.total_amount }}</p>
+            <p><strong>Status:</strong> {{ order.status }}</p>
+        </div>
+
+        <div class="success-buttons">
+            <a href="/" class="btn-primary">Continue Shopping</a>
+
+            <a href="{% url 'track_order' order.id %}" 
+               class="btn-outline">
+                Track This Order
+            </a>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

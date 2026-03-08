@@ -1,0 +1,126 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="lux-cart">
+    <div class="container">
+
+       
+
+        {% if cart_items %}
+        <h2 class="lux-title">Your Beauty Cart</h2>
+        <div class="lux-layout">
+
+            <!-- PRODUCTS -->
+            <div class="lux-products">
+                {% for item in cart_items %}
+                <div class="lux-card">
+
+                    <img src="{{ item.product.image.url }}" class="lux-img">
+
+                    <div class="lux-info">
+                        <h3>{{ item.product.name }}</h3>
+                        <p class="lux-price">₹ {{ item.product.price }}</p>
+
+                        <div class="lux-qty">
+
+                            <a href="{% url 'decrease_quantity' item.product.id %}" class="qty-btn">−</a>
+                        
+                            <span class="qty-number">{{ item.quantity }}</span>
+                        
+                            <a href="{% url 'increase_quantity' item.product.id %}" class="qty-btn">+</a>
+                        
+                        </div>
+
+                        <p class="lux-subtotal">
+                            Subtotal: ₹ {{ item.subtotal }}
+                        </p>
+
+                        <a href="{% url 'remove_from_cart' item.product.id %}" class="lux-remove">
+                            Remove
+                        </a>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- SUMMARY (only when items exist) -->
+            <div class="lux-summary">
+
+                <h3>Order Summary</h3>
+
+                <div class="summary-line">
+                    <span>Subtotal</span>
+                    <span>₹ {{ total }}</span>
+                </div>
+                
+                <div class="summary-line">
+                    <span>Shipping</span>
+                    <span class="free">Free</span>
+                </div>
+                
+                <div class="summary-line">
+                    <span>Tax (2%)</span>
+                    <span>₹ {{ tax|floatformat:2 }}</span>
+                </div>
+                
+                <hr>
+                
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span>₹ {{ final_total|floatformat:2 }}</span>
+                </div>
+
+                <a href="/checkout/" class="lux-checkout">
+                    Secure Checkout 🔒
+                </a>
+
+                <p class="secure-note">
+                    100% Secure & Safe Payment
+                </p>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <!-- EMPTY CART DESIGN -->
+       
+
+<!-- PAGE BANNER -->
+<div class="page-banner">
+    <h2>Your Beauty Cart</h2>
+</div>
+
+<!-- EMPTY CART -->
+<div class="empty-cart">
+    <div class="empty-card">
+
+        <div class="empty-icon">
+            <i class="fa-solid fa-bag-shopping"></i>
+        </div>
+
+        <h3>Your Beauty Cart is Empty</h3>
+
+        <p>
+            Looks like you haven't added any skincare yet.
+            Discover products that make your skin glow ✨
+        </p>
+
+        <a href="/products/" class="hero-btn">
+            Continue Shopping
+        </a>
+
+    </div>
+</div>
+
+{% endif %}
+
+        
+
+    </div>
+</section>
+{% endblock %}

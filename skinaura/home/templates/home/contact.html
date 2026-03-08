@@ -1,0 +1,84 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="contact-section">
+
+<div class="container">
+
+<h2 class="contact-title text-center">Contact Us</h2>
+
+<div class="row mt-5">
+
+<!-- Contact Form -->
+<div class="col-md-6">
+
+<div class="contact-card">
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="form-group">
+<label>Name</label>
+<input type="text" name="name" class="form-control" placeholder="Enter your name">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input 
+type="email" 
+name="email" 
+class="form-control"
+placeholder="Enter your email"
+pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+required
+title="Please enter a valid email address">
+</div>
+
+<div class="form-group">
+<label>Message</label>
+<textarea name="message" rows="5" class="form-control" placeholder="Write your message"></textarea>
+</div>
+
+<button type="submit" class="btn-contact">Send Message</button>
+
+</form>
+
+</div>
+
+</div>
+
+
+<!-- Contact Info -->
+<div class="col-md-6">
+
+    <div class="contact-info-card">
+
+        <h4>SkinAura</h4>
+        <p>Your destination for glowing and healthy skin.</p>
+        
+        <div class="info-box">
+        <i class="fas fa-envelope"></i>
+        <span>support@skinaura.com</span>
+        </div>
+        
+        <div class="info-box">
+        <i class="fas fa-phone"></i>
+        <span>+91 9876543210</span>
+        </div>
+        
+        <div class="info-box">
+        <i class="fas fa-location-dot"></i>
+        <span>Mumbai, India</span>
+        </div>
+        
+        </div>
+
+</div>
+
+</div>
+
+</section>
+
+{% endblock %}

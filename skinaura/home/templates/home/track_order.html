@@ -1,0 +1,44 @@
+{% extends "home/base.html" %}
+{% block content %}
+
+<div class="track-container">
+
+    <h2 class="track-title">Track Your Order</h2>
+
+    <div class="order-card">
+
+        <p><strong>Order ID:</strong> {{ order.id }}</p>
+        <p><strong>Date:</strong> {{ order.created_at }}</p>
+        <p><strong>Total Amount:</strong> ₹{{ order.total_amount }}</p>
+        <p><strong>Status:</strong> 
+            <span class="status-badge {{ order.status|lower }}">
+                {{ order.status }}
+            </span>
+        </p>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+
+            <div class="step {% if order.status == 'Pending' or order.status == 'Confirmed' or order.status == 'Shipped' or order.status == 'Delivered' %}active{% endif %}">
+                Pending
+            </div>
+
+            <div class="step {% if order.status == 'Confirmed' or order.status == 'Shipped' or order.status == 'Delivered' %}active{% endif %}">
+                Confirmed
+            </div>
+
+            <div class="step {% if order.status == 'Shipped' or order.status == 'Delivered' %}active{% endif %}">
+                Shipped
+            </div>
+
+            <div class="step {% if order.status == 'Delivered' %}active{% endif %}">
+                Delivered
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
