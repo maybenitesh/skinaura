@@ -2,30 +2,27 @@
 {% load static %}
 
 {% block content %}
-
 <section class="products-section">
     <div class="container">
 
-        <h2 class="section-title">Our Skincare Collection</h2>
+        <h2 class="text-center mb-5">Our Skincare Collection</h2>
 
         <div class="product-grid">
 
             {% for product in products %}
             <div class="product-card">
 
-                <!-- IMAGE WRAPPER -->
-                <div class="product-image">
+                <div class="product-img">
                     {% if product.image %}
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <img src="{{ product.image.url }}" alt="">
                     {% else %}
-                        <img src="{% static 'home/default.png' %}" alt="No image">
+                        <img src="{% static 'home/default.png' %}" alt="">
                     {% endif %}
                 </div>
 
-                <!-- PRODUCT DETAILS -->
-                <div class="product-info">
-                    <h3>{{ product.name }}</h3>
-                    <p class="price">₹{{ product.price }}</p>
+                <div class="product-body text-center">
+                    <h5>{{ product.name }}</h5>
+                    <p>₹{{ product.price }}</p>
 
                     <a href="{% url 'add_to_cart' product.id %}" class="btn-add">
                         Add to Cart
