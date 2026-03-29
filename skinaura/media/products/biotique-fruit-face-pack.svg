@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#C2AFF0"/>
+  <rect x="80" y="80" width="1040" height="1040" fill="white" rx="40" ry="40"/>
+  <text x="600" y="520" text-anchor="middle" font-size="56" font-family="Arial, sans-serif" fill="#222">SkinAura</text>
+  <text x="600" y="610" text-anchor="middle" font-size="44" font-family="Arial, sans-serif" fill="#333">Biotique Fruit Face Pack</text>
+  <text x="600" y="700" text-anchor="middle" font-size="34" font-family="Arial, sans-serif" fill="#555">Face Mask / Scrub</text>
+</svg>
